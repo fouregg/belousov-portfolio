@@ -1,3 +1,8 @@
+import artaiHall from './assets/projects/artai-hall.jpg'
+import artaiInstallation from './assets/projects/artai-installation.jpg'
+import artaiCanvas from './assets/projects/artai-canvas.jpg'
+import portfolioSiteShot from './assets/projects/portfolio-site.png'
+
 export type Lang = 'ru' | 'en'
 
 export interface ServiceItem {
@@ -29,6 +34,7 @@ export interface Project {
   description: string
   tags: string[]
   details: string[]
+  images?: string[]
   link?: string
   linkLabel?: string
 }
@@ -199,6 +205,21 @@ export const content: Record<Lang, Content> = {
           ],
         },
         {
+          slug: 'artai',
+          title: 'ARTAI — генератор изображений',
+          description: 'AI-генератор изображений по текстовому описанию на 7 языках с «цифровым холстом» — сгенерированные работы выводятся на большой экран в реальном времени. Показывали на международной выставке молодых художников в рамках фестиваля «Таврида·АРТ».',
+          tags: ['FastAPI', 'WebSocket', 'PostgreSQL', 'Docker'],
+          details: [
+            'Генерация изображений по текстовому промпту на 7 языках — автоматический перевод перед отправкой в модель',
+            '«Цифровой холст»: вывод сгенерированных изображений на большой экран в реальном времени через WebSocket, сокет держится часами',
+            'Развернул продакшен-инфраструктуру: Docker Compose, nginx, PostgreSQL, автоматический выпуск и продление TLS-сертификата',
+            'Инсталляция на выставке — сенсорные киоски для посетителей и экран во всю стену',
+          ],
+          images: [artaiHall, artaiInstallation, artaiCanvas],
+          link: 'https://ai.tavrida.art/',
+          linkLabel: 'Открыть проект',
+        },
+        {
           slug: 'this-portfolio',
           title: 'Этот сайт-портфолио',
           description: 'Двуязычный (RU/EN) сайт-визитка с автодеплоем на собственный сервер через GitHub Actions.',
@@ -209,6 +230,7 @@ export const content: Record<Lang, Content> = {
             'Автодеплой на собственный сервер по SSH через GitHub Actions при каждом пуше',
             'Размещён рядом с другим продакшен-проектом на одном сервере, без даунтайма для него',
           ],
+          images: [portfolioSiteShot],
           link: 'https://github.com/fouregg/belousov-portfolio',
           linkLabel: 'Код на GitHub',
         },
@@ -454,6 +476,21 @@ export const content: Record<Lang, Content> = {
           ],
         },
         {
+          slug: 'artai',
+          title: 'ARTAI — image generator',
+          description: 'An AI image generator from text prompts in 7 languages, with a "digital canvas" that streams generated artwork to a big screen in real time. Shown at an international exhibition of young artists as part of the "Tavrida·ART" festival.',
+          tags: ['FastAPI', 'WebSocket', 'PostgreSQL', 'Docker'],
+          details: [
+            'Image generation from a text prompt in 7 languages — automatic translation before it reaches the model',
+            'A "digital canvas": generated images stream to a large screen in real time over WebSocket, with sockets held open for hours',
+            'Set up the production infrastructure: Docker Compose, nginx, PostgreSQL, automatic TLS certificate issuance and renewal',
+            'Installed as an exhibit — touchscreen kiosks for visitors and a wall-sized display',
+          ],
+          images: [artaiHall, artaiInstallation, artaiCanvas],
+          link: 'https://ai.tavrida.art/',
+          linkLabel: 'Open project',
+        },
+        {
           slug: 'this-portfolio',
           title: 'This portfolio site',
           description: 'A bilingual (RU/EN) portfolio site with automatic deployment to a self-managed server via GitHub Actions.',
@@ -464,6 +501,7 @@ export const content: Record<Lang, Content> = {
             'Automatic SSH deployment to a self-managed server via GitHub Actions on every push',
             'Deployed alongside another live production project on the same server, with zero downtime for it',
           ],
+          images: [portfolioSiteShot],
           link: 'https://github.com/fouregg/belousov-portfolio',
           linkLabel: 'Code on GitHub',
         },

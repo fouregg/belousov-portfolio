@@ -35,13 +35,19 @@ export function ProjectPage() {
       </Reveal>
 
       <Reveal delay={0.05}>
-        <div
-          className={`mt-6 flex h-40 items-center justify-center rounded-2xl bg-gradient-to-br ${
-            projectGradients[index % projectGradients.length]
-          }`}
-        >
-          <Icon size={52} className={projectIconColors[index % projectIconColors.length]} strokeWidth={1.5} />
-        </div>
+        {project.images?.[0] ? (
+          <div className="mt-6 h-56 overflow-hidden rounded-2xl sm:h-72">
+            <img src={project.images[0]} alt={project.title} className="h-full w-full object-cover" />
+          </div>
+        ) : (
+          <div
+            className={`mt-6 flex h-40 items-center justify-center rounded-2xl bg-gradient-to-br ${
+              projectGradients[index % projectGradients.length]
+            }`}
+          >
+            <Icon size={52} className={projectIconColors[index % projectIconColors.length]} strokeWidth={1.5} />
+          </div>
+        )}
       </Reveal>
 
       <Reveal delay={0.1}>
@@ -71,6 +77,16 @@ export function ProjectPage() {
           </a>
         ) : null}
       </Reveal>
+
+      {project.images && project.images.length > 1 ? (
+        <Reveal delay={0.12} className="mt-6 grid grid-cols-2 gap-3">
+          {project.images.slice(1).map((src, i) => (
+            <div key={i} className="h-40 overflow-hidden rounded-xl">
+              <img src={src} alt="" className="h-full w-full object-cover" />
+            </div>
+          ))}
+        </Reveal>
+      ) : null}
 
       <Reveal delay={0.15}>
         <h2 className="mt-12 text-sm font-bold uppercase tracking-wide text-text-muted">{t.projects.detailsTitle}</h2>

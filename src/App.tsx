@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet } from 'react-router-dom'
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { BackgroundAnimation } from './components/BackgroundAnimation'
@@ -47,9 +47,26 @@ function Layout() {
   )
 }
 
+function ScrollToHash() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.slice(1)
+    // The target section mounts on the same tick; give it a frame to paint.
+    const raf = requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView()
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [location])
+
+  return null
+}
+
 function HomePage() {
   return (
     <>
+      <ScrollToHash />
       <Hero />
       <About />
       <Services />

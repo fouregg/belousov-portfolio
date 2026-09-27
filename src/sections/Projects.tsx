@@ -15,9 +15,19 @@ function ProjectCard({ project, index, linkLabel }: { project: Project; index: n
         to={`/projects/${project.slug}`}
         className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-transform hover:-translate-y-1"
       >
-        <div className={`flex h-32 items-center justify-center bg-gradient-to-br ${projectGradients[index % projectGradients.length]}`}>
-          <Icon size={40} className={projectIconColors[index % projectIconColors.length]} strokeWidth={1.5} />
-        </div>
+        {project.images?.[0] ? (
+          <div className="h-32 overflow-hidden">
+            <img
+              src={project.images[0]}
+              alt=""
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+        ) : (
+          <div className={`flex h-32 items-center justify-center bg-gradient-to-br ${projectGradients[index % projectGradients.length]}`}>
+            <Icon size={40} className={projectIconColors[index % projectIconColors.length]} strokeWidth={1.5} />
+          </div>
+        )}
         <div className="flex flex-1 flex-col p-6">
           <h3 className="font-bold text-text">{project.title}</h3>
           <p className="mt-2 flex-1 text-sm leading-relaxed text-text-muted">{project.description}</p>
