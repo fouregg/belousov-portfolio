@@ -1,4 +1,4 @@
-import { Mail, Send, MessageCircle, ExternalLink } from 'lucide-react'
+import { Mail, Send, ExternalLink } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { Section } from '../components/Section'
 import { Reveal } from '../components/Reveal'
@@ -10,12 +10,11 @@ export function Contact() {
   const channels = [
     { icon: <Mail size={20} />, label: t.contact.emailLabel, value: siteConfig.email, href: `mailto:${siteConfig.email}` },
     { icon: <Send size={20} />, label: t.contact.telegramLabel, value: 'Telegram', href: siteConfig.telegram },
-    { icon: <MessageCircle size={20} />, label: t.contact.whatsappLabel, value: 'WhatsApp', href: siteConfig.whatsapp },
   ]
 
   return (
     <Section id="contact" title={t.contact.title} subtitle={t.contact.subtitle}>
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2">
         {channels.map((channel, i) => (
           <Reveal key={channel.label} delay={i * 0.06}>
             <a

@@ -58,7 +58,6 @@ export interface Content {
     subtitle: string
     emailLabel: string
     telegramLabel: string
-    whatsappLabel: string
     profiLabel: string
   }
   footer: { rights: string; builtWith: string }
@@ -253,7 +252,6 @@ export const content: Record<Lang, Content> = {
       subtitle: 'Отвечаю в течение дня. Пишите в удобный мессенджер или на почту.',
       emailLabel: 'Email',
       telegramLabel: 'Telegram',
-      whatsappLabel: 'WhatsApp',
       profiLabel: 'Профиль на Профи.ру',
     },
     footer: {
@@ -449,7 +447,6 @@ export const content: Record<Lang, Content> = {
       subtitle: "I usually reply within a day. Reach out on whichever channel is easiest for you.",
       emailLabel: 'Email',
       telegramLabel: 'Telegram',
-      whatsappLabel: 'WhatsApp',
       profiLabel: 'Profile on Profi.ru',
     },
     footer: {

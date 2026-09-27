@@ -3,9 +3,7 @@ export const siteConfig = {
   name: 'Алексей Белоусов',
   email: 'alexey.belousov.site@gmail.com',
 
-  // TODO: замените на реальные значения перед публикацией.
-  telegram: 'https://t.me/your_telegram', // например https://t.me/alexey_belousov
-  whatsapp: 'https://wa.me/70000000000', // формат: https://wa.me/<код страны+номер без +, пробелов>
+  telegram: 'https://t.me/Corcky',
 
   profiRu: 'https://profi.ru/profile/BelousovAU5/',
 
