@@ -19,6 +19,7 @@ export function Header() {
   const links = [
     { href: '#about', label: t.nav.about },
     { href: '#services', label: t.nav.services },
+    { href: '#projects', label: t.nav.projects },
     { href: '#experience', label: t.nav.experience },
     { href: '#reviews', label: t.nav.reviews },
   ]
@@ -29,12 +30,8 @@ export function Header() {
         scrolled ? 'border-b border-border bg-bg/80 backdrop-blur-md' : 'border-b border-transparent'
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-mono-brand text-sm font-semibold tracking-tight text-text">
-          АБ<span className="text-accent">.</span>dev
-        </a>
-
-        <nav className="hidden items-center gap-8 md:flex">
+      <div className="mx-auto flex max-w-6xl items-center justify-end px-6 py-4">
+        <nav className="mr-auto hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <a
               key={link.href}

@@ -3,6 +3,25 @@ import { Star, ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { siteConfig } from '../siteConfig'
 
+function OrbitDecoration() {
+  return (
+    <motion.svg
+      aria-hidden
+      viewBox="0 0 400 400"
+      className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[130%] w-[130%] -translate-x-1/2 -translate-y-1/2 opacity-70"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
+    >
+      <circle cx="200" cy="200" r="170" stroke="var(--border)" strokeWidth="1" fill="none" />
+      <circle cx="200" cy="200" r="130" stroke="var(--border)" strokeWidth="1" fill="none" strokeDasharray="4 8" />
+      <circle cx="370" cy="200" r="6" fill="var(--accent)" />
+      <circle cx="30" cy="200" r="5" fill="var(--accent-2)" />
+      <circle cx="200" cy="70" r="4" fill="var(--accent-teach)" />
+      <circle cx="290" cy="320" r="4" fill="var(--accent)" />
+    </motion.svg>
+  )
+}
+
 export function Hero() {
   const { t } = useLanguage()
 
@@ -65,8 +84,9 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-          className="justify-self-center lg:justify-self-end"
+          className="relative justify-self-center lg:justify-self-end"
         >
+          <OrbitDecoration />
           <div className="w-full max-w-sm rounded-2xl border border-border bg-surface p-5 shadow-xl shadow-black/5">
             <div className="mb-4 flex items-center gap-1.5">
               <span className="h-3 w-3 rounded-full bg-red-400/70" />

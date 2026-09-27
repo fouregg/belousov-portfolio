@@ -7,11 +7,10 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-6 py-8 text-center sm:flex-row sm:justify-between sm:text-left">
+      <div className="mx-auto flex max-w-6xl items-center justify-center px-6 py-8 text-center">
         <p className="text-sm text-text-muted">
           © {year} {siteConfig.name}. {t.footer.rights}
         </p>
-        <p className="text-xs text-text-muted">{t.footer.builtWith}</p>
       </div>
     </footer>
   )

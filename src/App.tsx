@@ -1,9 +1,11 @@
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import { ThemeProvider } from './context/ThemeContext'
+import { BackgroundAnimation } from './components/BackgroundAnimation'
 import { Header } from './sections/Header'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
 import { Services } from './sections/Services'
+import { Projects } from './sections/Projects'
 import { Skills } from './sections/Skills'
 import { Timeline } from './sections/Timeline'
 import { Achievements } from './sections/Achievements'
@@ -31,13 +33,15 @@ function DocumentMeta() {
 
 function Page() {
   return (
-    <div className="min-h-screen bg-bg text-text">
+    <div className="min-h-screen text-text">
       <DocumentMeta />
+      <BackgroundAnimation />
       <Header />
       <main>
         <Hero />
         <About />
         <Services />
+        <Projects />
         <Skills />
         <Timeline />
         <Achievements />

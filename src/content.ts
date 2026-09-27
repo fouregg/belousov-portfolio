@@ -23,9 +23,17 @@ export interface Testimonial {
   text: string
 }
 
+export interface Project {
+  title: string
+  description: string
+  tags: string[]
+  link?: string
+  linkLabel?: string
+}
+
 export interface Content {
   meta: { title: string; description: string }
-  nav: { about: string; services: string; experience: string; reviews: string; contact: string; cta: string }
+  nav: { about: string; services: string; projects: string; experience: string; reviews: string; contact: string; cta: string }
   hero: {
     kicker: string
     title: string
@@ -43,6 +51,7 @@ export interface Content {
     dev: { title: string; tag: string; items: ServiceItem[] }
     teach: { title: string; tag: string; items: ServiceItem[]; priceNote: string; priceLinkLabel: string }
   }
+  projects: { title: string; subtitle: string; items: Project[]; linkLabel: string }
   skills: { title: string; groups: SkillGroup[] }
   timeline: {
     title: string
@@ -60,19 +69,20 @@ export interface Content {
     telegramLabel: string
     profiLabel: string
   }
-  footer: { rights: string; builtWith: string }
+  footer: { rights: string }
 }
 
 export const content: Record<Lang, Content> = {
   ru: {
     meta: {
-      title: 'Алексей Белоусов — backend-разработчик и преподаватель информатики',
+      title: 'Алексей Белоусов — backend-разработчик и преподаватель',
       description:
-        'Backend-разработка на Python (FastAPI, Django) и подготовка к ЕГЭ/ОГЭ по информатике, обучение программированию. 10 лет опыта, рейтинг 4.93 на Профи.ру.',
+        'Backend-разработка на Python (FastAPI, Django) и обучение программированию. 10 лет опыта, рейтинг 4.93 на Профи.ру.',
     },
     nav: {
       about: 'Обо мне',
       services: 'Услуги',
+      projects: 'Проекты',
       experience: 'Опыт',
       reviews: 'Отзывы',
       contact: 'Контакты',
@@ -81,15 +91,15 @@ export const content: Record<Lang, Content> = {
     hero: {
       kicker: 'Разработка и обучение',
       title: 'Алексей Белоусов',
-      highlight: 'backend-разработчик и преподаватель информатики',
+      highlight: 'backend-разработчик и преподаватель',
       subtitle:
-        '10 лет разрабатываю ПО на Python — FastAPI, Django, AI-агенты. Параллельно готовлю к ЕГЭ и ОГЭ по информатике и учу программированию: от первого «Hello, world» до дипломной работы.',
+        '10 лет разрабатываю ПО на Python — FastAPI, Django, AI-агенты. Параллельно преподаю программирование и информатику: от первого «Hello, world» до дипломной работы.',
       ctaDev: 'Обсудить проект',
       ctaTeach: 'Записаться на занятие',
       ratingLabel: 'рейтинг на Профи.ру · 44 отзыва',
       terminalLines: [
         '$ whoami',
-        'lead backend developer · преподаватель информатики',
+        'lead backend developer · преподаватель',
         '$ stack --print',
         'Python · FastAPI · Django · PostgreSQL · Grafana',
       ],
@@ -97,9 +107,9 @@ export const content: Record<Lang, Content> = {
     about: {
       title: 'Обо мне',
       paragraphs: [
-        'Ведущий backend-разработчик на Python (FastAPI, Django, AI-агенты) в маркетинговом агентстве. Занимаюсь разработкой ПО уже 10 лет.',
+        'Ведущий разработчик на Python в Meadow — строю микросервисную AI-платформу для маркетплейса блогеров: FastAPI, RabbitMQ, интеграции с AI/LLM. Занимаюсь разработкой ПО уже 10 лет.',
         'Был старшим преподавателем в Московском педагогическом государственном университете (МПГУ) по программе двух дипломов с University of London. Работаю со студентами из Queen Mary University of London, University of Stirling, вузов Германии и Канады.',
-        'По информатике мои ученики показывают высокие результаты — от 70 до 95 баллов на ЕГЭ. Стараюсь находить интерес к предмету через хобби и увлечения ученика, объясняю, с какими ИТ-профессиями связаны темы экзамена. Есть опыт работы с детьми со 2 класса.',
+        'Стараюсь находить интерес к предмету через хобби и увлечения ученика, показываю, с какими ИТ-профессиями связаны изучаемые темы. Есть опыт работы с детьми со 2 класса.',
       ],
     },
     services: {
@@ -132,12 +142,12 @@ export const content: Record<Lang, Content> = {
         tag: 'для школьников, студентов и взрослых',
         items: [
           {
-            title: 'ЕГЭ и ОГЭ по информатике',
-            description: 'Разбор реальных заданий, связь тем экзамена с практикой и ИТ-профессиями. Результаты учеников — 70–95 баллов.',
-          },
-          {
             title: 'Обучение программированию',
             description: 'Python, JavaScript, C# — с нуля или для углубления знаний, с реальными мини-проектами.',
+          },
+          {
+            title: 'Информатика',
+            description: 'Разбор ключевых тем предмета, связь теории с практикой и ИТ-профессиями.',
           },
           {
             title: 'Разработка игр на Unity',
@@ -152,13 +162,37 @@ export const content: Record<Lang, Content> = {
         priceLinkLabel: 'Полный прайс (36 услуг) на Профи.ру',
       },
     },
+    projects: {
+      title: 'Проекты',
+      subtitle: 'Часть того, что делал сам — от продакшен-сервисов до пет-проектов.',
+      linkLabel: 'Подробнее',
+      items: [
+        {
+          title: 'AI-платформа для маркетплейса блогеров',
+          description: 'Микросервисный backend на FastAPI: автоматическое отслеживание рекламных интеграций и упоминаний брендов в контенте блогеров с помощью AI/LLM.',
+          tags: ['FastAPI', 'RabbitMQ', 'AI/LLM', 'PostgreSQL'],
+        },
+        {
+          title: 'Telegram-бот для мониторинга вакансий и товаров',
+          description: 'Парсинг и агрегация данных с внешних площадок, аналитические веб-страницы с графиками и таблицами.',
+          tags: ['Python', 'Telegram API', 'BeautifulSoup', 'Chart.js'],
+        },
+        {
+          title: 'Этот сайт-портфолио',
+          description: 'Двуязычный (RU/EN) сайт-визитка с автодеплоем на собственный сервер через GitHub Actions.',
+          tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
+          link: 'https://github.com/fouregg/belousov-portfolio',
+          linkLabel: 'Код на GitHub',
+        },
+      ],
+    },
     skills: {
       title: 'Стек и инструменты',
       groups: [
         { title: 'Backend', items: ['Python', 'FastAPI', 'Django', 'REST API', 'AI-агенты'] },
         { title: 'Базы данных', items: ['PostgreSQL', 'MS SQL Server', 'MySQL', 'ER-моделирование'] },
         { title: 'Инфраструктура', items: ['Docker', 'Grafana', 'Loki', 'Prometheus'] },
-        { title: 'Преподавание', items: ['Информатика ЕГЭ/ОГЭ', 'Python', 'JavaScript', 'C# / Unity'] },
+        { title: 'Преподавание', items: ['Информатика', 'Python', 'JavaScript', 'C# / Unity'] },
       ],
     },
     timeline: {
@@ -179,14 +213,24 @@ export const content: Record<Lang, Content> = {
       ],
       experience: [
         {
-          period: 'сейчас',
-          title: 'Ведущий backend-разработчик на Python',
-          place: 'FastAPI, Django, AI-агенты · маркетинговое агентство',
+          period: 'с 2024',
+          title: 'Ведущий разработчик',
+          place: 'Meadow · микросервисная AI-платформа, FastAPI, RabbitMQ',
         },
         {
-          period: 'с 2021',
+          period: '2023–2024',
+          title: 'Старший разработчик',
+          place: 'Rabbit & Carrot · декомпозиция монолита на микросервисы, Celery, Redis',
+        },
+        {
+          period: '2020–2022',
+          title: 'Бэкенд-разработчик',
+          place: 'ZeroLab · площадка для краудсорсинга, Django REST Framework, Telegram-боты',
+        },
+        {
+          period: '2018–2020',
           title: 'Педагог',
-          place: 'Московский педагогический государственный университет · программа двух дипломов с University of London',
+          place: 'МПГУ · дискретная математика, машинное обучение, веб-разработка на Django и Flask',
         },
         {
           period: 'с 2017',
@@ -196,7 +240,7 @@ export const content: Record<Lang, Content> = {
         {
           period: 'с 2014',
           title: 'Частная репетиторская практика',
-          place: 'Информатика, программирование, подготовка к экзаменам',
+          place: 'Информатика, программирование',
         },
         {
           period: 'с 2013',
@@ -223,13 +267,13 @@ export const content: Record<Lang, Content> = {
         {
           name: 'Илья',
           date: '18 июля 2019',
-          service: 'Информатика · ЕГЭ по информатике',
+          service: 'Информатика',
           text: 'До ноября 2018 года я не имел ни малейшего представления о том, как решать задания по информатике из ЕГЭ. Через несколько месяцев занятий уже чувствовал, что могу написать экзамен на достойный балл. Отзанимавшись раз в неделю 7 месяцев, сдал экзамен на 88 баллов. Репетитор умеет заинтересовать предметом и доступно донести материал.',
         },
         {
           name: 'Оксана',
           date: '20 июля 2023',
-          service: 'ЕГЭ по информатике',
+          service: 'Информатика',
           text: 'Очень благодарны Алексею Юрьевичу — в успешной сдаче экзамена вложен труд и знания преподавателя! Сыну было понятно, как объясняются темы и решения задач. Если время занятия подходило к концу, Алексей Юрьевич никогда не оставлял задачу нерешённой.',
         },
         {
@@ -241,8 +285,8 @@ export const content: Record<Lang, Content> = {
         {
           name: 'Роман',
           date: '9 августа 2020',
-          service: 'Информатика · ЕГЭ по информатике',
-          text: 'Темпы преподавания, подача материала, контроль знаний — хороший результат ЕГЭ.',
+          service: 'Информатика',
+          text: 'Темпы преподавания, подача материала, контроль знаний — хороший результат.',
         },
       ],
       linkLabel: 'Все 44 отзыва на Профи.ру',
@@ -256,18 +300,18 @@ export const content: Record<Lang, Content> = {
     },
     footer: {
       rights: 'Все права защищены.',
-      builtWith: 'Сайт сделан на React, Vite и Tailwind CSS',
     },
   },
   en: {
     meta: {
-      title: 'Alexey Belousov — Backend Developer & Computer Science Tutor',
+      title: 'Alexey Belousov — Backend Developer & Tutor',
       description:
-        'Python backend development (FastAPI, Django) and computer science tutoring, exam prep and programming lessons. 10 years of experience, 4.93 rating on Profi.ru.',
+        'Python backend development (FastAPI, Django) and programming lessons. 10 years of experience, 4.93 rating on Profi.ru.',
     },
     nav: {
       about: 'About',
       services: 'Services',
+      projects: 'Projects',
       experience: 'Experience',
       reviews: 'Reviews',
       contact: 'Contact',
@@ -276,15 +320,15 @@ export const content: Record<Lang, Content> = {
     hero: {
       kicker: 'Development & Teaching',
       title: 'Alexey Belousov',
-      highlight: 'Backend Developer & Computer Science Tutor',
+      highlight: 'Backend Developer & Tutor',
       subtitle:
-        '10 years building software in Python — FastAPI, Django, AI agents. Alongside that, I prepare students for Russian national exams in computer science and teach programming, from a first "Hello, world" to a full thesis project.',
+        '10 years building software in Python — FastAPI, Django, AI agents. Alongside that, I teach programming and computer science — from a first "Hello, world" to a full thesis project.',
       ctaDev: 'Discuss a project',
       ctaTeach: 'Book a lesson',
       ratingLabel: 'rating on Profi.ru · 44 reviews',
       terminalLines: [
         '$ whoami',
-        'lead backend developer · computer science tutor',
+        'lead backend developer · tutor',
         '$ stack --print',
         'Python · FastAPI · Django · PostgreSQL · Grafana',
       ],
@@ -292,9 +336,9 @@ export const content: Record<Lang, Content> = {
     about: {
       title: 'About me',
       paragraphs: [
-        'Lead backend developer in Python (FastAPI, Django, AI agents) at a marketing agency. I have been building software for 10 years.',
+        'Lead developer in Python at Meadow — building a microservice AI platform for a blogger marketplace: FastAPI, RabbitMQ, AI/LLM integrations. I have been building software for 10 years.',
         'Former senior lecturer at Moscow Pedagogical State University, on a dual-degree programme with the University of London. I work with students from Queen Mary University of London, the University of Stirling, and universities in Germany and Canada.',
-        'My computer science students consistently score high on their exams — 70 to 95 points. I try to connect the subject to each student\'s own interests, and explain how exam topics map to real IT careers. I have experience teaching children from as early as the 2nd grade.',
+        'I try to connect the subject to each student\'s own interests, and show how what they learn connects to real IT careers. I have experience teaching children from as early as the 2nd grade.',
       ],
     },
     services: {
@@ -327,12 +371,12 @@ export const content: Record<Lang, Content> = {
         tag: 'for students and adults',
         items: [
           {
-            title: 'Computer science exam prep',
-            description: 'Working through real exam tasks and connecting them to practice and IT careers. Student results: 70–95 points.',
-          },
-          {
             title: 'Programming lessons',
             description: 'Python, JavaScript, C# — from zero or to deepen existing knowledge, with real mini-projects.',
+          },
+          {
+            title: 'Computer science',
+            description: 'Working through key topics of the subject, connecting theory to practice and IT careers.',
           },
           {
             title: 'Game development with Unity',
@@ -347,13 +391,37 @@ export const content: Record<Lang, Content> = {
         priceLinkLabel: 'Full price list (36 services) on Profi.ru',
       },
     },
+    projects: {
+      title: 'Projects',
+      subtitle: 'A selection of what I\'ve built — from production services to side projects.',
+      linkLabel: 'Learn more',
+      items: [
+        {
+          title: 'AI platform for a blogger marketplace',
+          description: 'Microservice backend on FastAPI: automatic tracking of ad integrations and brand mentions in bloggers\' content using AI/LLM.',
+          tags: ['FastAPI', 'RabbitMQ', 'AI/LLM', 'PostgreSQL'],
+        },
+        {
+          title: 'Telegram bot for job and product monitoring',
+          description: 'Parsing and aggregating data from external platforms, with analytics web pages featuring charts and tables.',
+          tags: ['Python', 'Telegram API', 'BeautifulSoup', 'Chart.js'],
+        },
+        {
+          title: 'This portfolio site',
+          description: 'A bilingual (RU/EN) portfolio site with automatic deployment to a self-managed server via GitHub Actions.',
+          tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
+          link: 'https://github.com/fouregg/belousov-portfolio',
+          linkLabel: 'Code on GitHub',
+        },
+      ],
+    },
     skills: {
       title: 'Stack & tools',
       groups: [
         { title: 'Backend', items: ['Python', 'FastAPI', 'Django', 'REST API', 'AI agents'] },
         { title: 'Databases', items: ['PostgreSQL', 'MS SQL Server', 'MySQL', 'ER modelling'] },
         { title: 'Infrastructure', items: ['Docker', 'Grafana', 'Loki', 'Prometheus'] },
-        { title: 'Teaching', items: ['CS exam prep', 'Python', 'JavaScript', 'C# / Unity'] },
+        { title: 'Teaching', items: ['Computer science', 'Python', 'JavaScript', 'C# / Unity'] },
       ],
     },
     timeline: {
@@ -374,14 +442,24 @@ export const content: Record<Lang, Content> = {
       ],
       experience: [
         {
-          period: 'present',
-          title: 'Lead Backend Developer, Python',
-          place: 'FastAPI, Django, AI agents · marketing agency',
+          period: 'since 2024',
+          title: 'Lead Developer',
+          place: 'Meadow · microservice AI platform, FastAPI, RabbitMQ',
         },
         {
-          period: 'since 2021',
+          period: '2023–2024',
+          title: 'Senior Developer',
+          place: 'Rabbit & Carrot · decomposed a monolith into microservices, Celery, Redis',
+        },
+        {
+          period: '2020–2022',
+          title: 'Backend Developer',
+          place: 'ZeroLab · crowdsourcing platform, Django REST Framework, Telegram bots',
+        },
+        {
+          period: '2018–2020',
           title: 'Lecturer',
-          place: 'Moscow Pedagogical State University · dual-degree programme with the University of London',
+          place: 'Moscow Pedagogical State University · discrete mathematics, machine learning, web development with Django and Flask',
         },
         {
           period: 'since 2017',
@@ -391,7 +469,7 @@ export const content: Record<Lang, Content> = {
         {
           period: 'since 2014',
           title: 'Private tutoring practice',
-          place: 'Computer science, programming, exam preparation',
+          place: 'Computer science, programming',
         },
         {
           period: 'since 2013',
@@ -418,13 +496,13 @@ export const content: Record<Lang, Content> = {
         {
           name: 'Ilya',
           date: 'Jul 18, 2019',
-          service: 'Computer science · CS exam prep',
+          service: 'Computer science',
           text: "Before November 2018 I had no idea how to solve computer science exam tasks. After a few months of lessons I already felt ready for a solid score. Studying once a week for 7 months, I passed the exam with 88 points. The tutor knows how to make the subject interesting and explain it clearly.",
         },
         {
           name: 'Oksana',
           date: 'Jul 20, 2023',
-          service: 'CS exam prep',
+          service: 'Computer science',
           text: "We're very grateful to Alexey — his effort and knowledge as a teacher were key to passing the exam. My son found the explanations of topics and problem solving clear. Whenever a lesson was running long, he never left a problem unsolved.",
         },
         {
@@ -436,8 +514,8 @@ export const content: Record<Lang, Content> = {
         {
           name: 'Roman',
           date: 'Aug 9, 2020',
-          service: 'Computer science · CS exam prep',
-          text: 'Good pace of teaching, clear delivery of material, solid progress checks — a strong exam result.',
+          service: 'Computer science',
+          text: 'Good pace of teaching, clear delivery of material, solid progress checks — a strong result.',
         },
       ],
       linkLabel: 'All 44 reviews on Profi.ru',
@@ -451,7 +529,6 @@ export const content: Record<Lang, Content> = {
     },
     footer: {
       rights: 'All rights reserved.',
-      builtWith: 'Built with React, Vite and Tailwind CSS',
     },
   },
 }
