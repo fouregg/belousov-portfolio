@@ -1,7 +1,6 @@
 import artaiHall from './assets/projects/artai-hall.jpg'
 import artaiInstallation from './assets/projects/artai-installation.jpg'
 import artaiCanvas from './assets/projects/artai-canvas.jpg'
-import portfolioSiteShot from './assets/projects/portfolio-site.png'
 
 export type Lang = 'ru' | 'en'
 
@@ -218,21 +217,6 @@ export const content: Record<Lang, Content> = {
           images: [artaiHall, artaiInstallation, artaiCanvas],
           link: 'https://ai.tavrida.art/',
           linkLabel: 'Открыть проект',
-        },
-        {
-          slug: 'this-portfolio',
-          title: 'Этот сайт-портфолио',
-          description: 'Двуязычный (RU/EN) сайт-визитка с автодеплоем на собственный сервер через GitHub Actions.',
-          tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
-          details: [
-            'Двуязычный контент (RU/EN) с мгновенным переключением и сохранением выбора',
-            'Тёмная/светлая тема с сохранением выбора в браузере',
-            'Автодеплой на собственный сервер по SSH через GitHub Actions при каждом пуше',
-            'Размещён рядом с другим продакшен-проектом на одном сервере, без даунтайма для него',
-          ],
-          images: [portfolioSiteShot],
-          link: 'https://github.com/fouregg/belousov-portfolio',
-          linkLabel: 'Код на GitHub',
         },
       ],
     },
@@ -489,21 +473,6 @@ export const content: Record<Lang, Content> = {
           images: [artaiHall, artaiInstallation, artaiCanvas],
           link: 'https://ai.tavrida.art/',
           linkLabel: 'Open project',
-        },
-        {
-          slug: 'this-portfolio',
-          title: 'This portfolio site',
-          description: 'A bilingual (RU/EN) portfolio site with automatic deployment to a self-managed server via GitHub Actions.',
-          tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
-          details: [
-            'Bilingual content (RU/EN) with instant switching and a remembered preference',
-            'Dark/light theme with the choice remembered in the browser',
-            'Automatic SSH deployment to a self-managed server via GitHub Actions on every push',
-            'Deployed alongside another live production project on the same server, with zero downtime for it',
-          ],
-          images: [portfolioSiteShot],
-          link: 'https://github.com/fouregg/belousov-portfolio',
-          linkLabel: 'Code on GitHub',
         },
       ],
     },
