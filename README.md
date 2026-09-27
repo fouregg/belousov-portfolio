@@ -27,9 +27,12 @@ npm run build
 
 Результат — статические файлы в `dist/`, их можно разместить на любом хостинге.
 
-## Деплой (варианты)
+## Продакшен
 
-- **GitHub Pages / Netlify / Vercel** — самый простой способ, бесплатно. Просто подключите репозиторий, команда сборки `npm run build`, папка публикации `dist`.
-- **Свой хостинг** — скопируйте содержимое `dist/` на сервер.
+Сайт живёт на `https://belousov-alex.ru` (сервер `159.194.206.141`, тот же хост, что и проект ARTAI).
 
-Скажите, если нужна помощь с настройкой конкретного варианта деплоя.
+- **Контейнер:** `deploy/docker-compose.yml` + `deploy/nginx-site.conf` — раздают статику из `/opt/belousov-portfolio/dist` внутри `nginx:alpine`, контейнер `belousov-portfolio-web`, подключён к сети `artai_default`.
+- **TLS/маршрутизация:** отдельный сертификат Let's Encrypt на `belousov-alex.ru`/`www.belousov-alex.ru`, порт 80/443 общий с ARTAI — маршрутизация по `server_name` в `/opt/artai/nginx.conf` (общий nginx). Справочная копия добавленных блоков — `deploy/shared-nginx-snippet.conf`.
+- **CI/CD:** `.github/workflows/deploy.yml` — при пуше в `master`/`main` собирает проект и заливает `dist/` на сервер по `rsync` через SSH. Секреты в репозитории: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY` (отдельный ключ, только для этого репозитория).
+
+**Важно:** `/opt/artai/nginx.conf` — общий файл с проектом ARTAI. Менять его только через `append` (`>>` / `ssh ... "cat >> file" < local`), никогда через `scp`/перезапись файла целиком — иначе Docker потеряет bind-mount на существующий inode и сайт ARTAI придётся поднимать через `docker restart artai-nginx`.
