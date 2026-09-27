@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-teach: var(--accent-teach);
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #f7f7fb;
+  --bg-soft: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f1f1f8;
+  --border: #e3e3ee;
+  --text: #14141f;
+  --text-muted: #5b5b70;
+  --accent: #5b5bf5;
+  --accent-2: #14b8a6;
+  --accent-teach: #d97706;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #0b0b12;
+  --bg-soft: #0f0f18;
+  --surface: #14141f;
+  --surface-2: #191926;
+  --border: #262637;
+  --text: #f2f2f8;
+  --text-muted: #9a9ab0;
+  --accent: #8484ff;
+  --accent-2: #2dd4bf;
+  --accent-teach: #fbbf24;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-mono-brand {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
