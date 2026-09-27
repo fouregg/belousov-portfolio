@@ -17,11 +17,11 @@ export function Header() {
   }, [])
 
   const links = [
-    { href: '#about', label: t.nav.about },
-    { href: '#services', label: t.nav.services },
-    { href: '#projects', label: t.nav.projects },
-    { href: '#experience', label: t.nav.experience },
-    { href: '#reviews', label: t.nav.reviews },
+    { href: '/#about', label: t.nav.about },
+    { href: '/#services', label: t.nav.services },
+    { href: '/#projects', label: t.nav.projects },
+    { href: '/#experience', label: t.nav.experience },
+    { href: '/#reviews', label: t.nav.reviews },
   ]
 
   return (
@@ -59,7 +59,7 @@ export function Header() {
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
           <a
-            href="#contact"
+            href="/#contact"
             className="hidden rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:block"
           >
             {t.nav.cta}
@@ -87,7 +87,7 @@ export function Header() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/#contact"
             onClick={() => setMenuOpen(false)}
             className="mt-2 rounded-lg bg-accent px-3 py-2 text-center text-sm font-semibold text-white"
           >

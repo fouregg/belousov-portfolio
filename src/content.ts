@@ -24,9 +24,11 @@ export interface Testimonial {
 }
 
 export interface Project {
+  slug: string
   title: string
   description: string
   tags: string[]
+  details: string[]
   link?: string
   linkLabel?: string
 }
@@ -51,7 +53,7 @@ export interface Content {
     dev: { title: string; tag: string; items: ServiceItem[] }
     teach: { title: string; tag: string; items: ServiceItem[]; priceNote: string; priceLinkLabel: string }
   }
-  projects: { title: string; subtitle: string; items: Project[]; linkLabel: string }
+  projects: { title: string; subtitle: string; items: Project[]; linkLabel: string; backLabel: string; detailsTitle: string }
   skills: { title: string; groups: SkillGroup[] }
   timeline: {
     title: string
@@ -166,21 +168,47 @@ export const content: Record<Lang, Content> = {
       title: 'Проекты',
       subtitle: 'Часть того, что делал сам — от продакшен-сервисов до пет-проектов.',
       linkLabel: 'Подробнее',
+      backLabel: '← Все проекты',
+      detailsTitle: 'Что было сделано',
       items: [
         {
+          slug: 'ai-platform-meadow',
           title: 'AI-платформа для маркетплейса блогеров',
           description: 'Микросервисный backend на FastAPI: автоматическое отслеживание рекламных интеграций и упоминаний брендов в контенте блогеров с помощью AI/LLM.',
           tags: ['FastAPI', 'RabbitMQ', 'AI/LLM', 'PostgreSQL'],
+          details: [
+            'Спроектировал и реализовал микросервисную архитектуру на FastAPI для масштабируемости и отказоустойчивости платформы',
+            'Использовал pydantic для валидации, сериализации и структурирования данных в API',
+            'Реализовал асинхронные интеграции с внешними API, в том числе через aiohttp',
+            'Разрабатывал backend-интеграции с AI/LLM-сервисами для обработки и анализа контента',
+            'Работал с SQLAlchemy для проектирования моделей и оптимизации SQL-запросов',
+            'Организовал взаимодействие сервисов через RabbitMQ',
+            'Развернул стек мониторинга (Grafana + логирование контейнеров)',
+          ],
         },
         {
+          slug: 'telegram-bot-zerolab',
           title: 'Telegram-бот для мониторинга вакансий и товаров',
           description: 'Парсинг и агрегация данных с внешних площадок, аналитические веб-страницы с графиками и таблицами.',
           tags: ['Python', 'Telegram API', 'BeautifulSoup', 'Chart.js'],
+          details: [
+            'Реализовал функциональность бота на Python Telegram API, тестировал локально через ngrok',
+            'Интегрировал внешние API для получения актуальной информации по товарам и вакансиям',
+            'Парсинг HTML-страниц с помощью BeautifulSoup, структурирование и фильтрация данных по ключевым признакам',
+            'Разработал и свёрстал аналитические веб-страницы с графиками на Chart.js и Bootstrap',
+          ],
         },
         {
+          slug: 'this-portfolio',
           title: 'Этот сайт-портфолио',
           description: 'Двуязычный (RU/EN) сайт-визитка с автодеплоем на собственный сервер через GitHub Actions.',
           tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
+          details: [
+            'Двуязычный контент (RU/EN) с мгновенным переключением и сохранением выбора',
+            'Тёмная/светлая тема с сохранением выбора в браузере',
+            'Автодеплой на собственный сервер по SSH через GitHub Actions при каждом пуше',
+            'Размещён рядом с другим продакшен-проектом на одном сервере, без даунтайма для него',
+          ],
           link: 'https://github.com/fouregg/belousov-portfolio',
           linkLabel: 'Код на GitHub',
         },
@@ -395,21 +423,47 @@ export const content: Record<Lang, Content> = {
       title: 'Projects',
       subtitle: 'A selection of what I\'ve built — from production services to side projects.',
       linkLabel: 'Learn more',
+      backLabel: '← All projects',
+      detailsTitle: 'What I did',
       items: [
         {
+          slug: 'ai-platform-meadow',
           title: 'AI platform for a blogger marketplace',
           description: 'Microservice backend on FastAPI: automatic tracking of ad integrations and brand mentions in bloggers\' content using AI/LLM.',
           tags: ['FastAPI', 'RabbitMQ', 'AI/LLM', 'PostgreSQL'],
+          details: [
+            'Designed and built a microservice architecture on FastAPI for platform scalability and resilience',
+            'Used pydantic for validation, serialization, and structuring data across the API',
+            'Implemented asynchronous integrations with external APIs, including with aiohttp',
+            'Built backend integrations with AI/LLM services for content processing and analysis',
+            'Worked with SQLAlchemy for data modelling and SQL query optimisation',
+            'Set up inter-service communication over RabbitMQ',
+            'Deployed a monitoring stack (Grafana + container logging)',
+          ],
         },
         {
+          slug: 'telegram-bot-zerolab',
           title: 'Telegram bot for job and product monitoring',
           description: 'Parsing and aggregating data from external platforms, with analytics web pages featuring charts and tables.',
           tags: ['Python', 'Telegram API', 'BeautifulSoup', 'Chart.js'],
+          details: [
+            'Built the bot on the Python Telegram API, tested locally via ngrok',
+            'Integrated external APIs for up-to-date product and job listing data',
+            'Parsed HTML pages with BeautifulSoup, structured and filtered data by key attributes',
+            'Built analytics web pages with charts using Chart.js and Bootstrap',
+          ],
         },
         {
+          slug: 'this-portfolio',
           title: 'This portfolio site',
           description: 'A bilingual (RU/EN) portfolio site with automatic deployment to a self-managed server via GitHub Actions.',
           tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS'],
+          details: [
+            'Bilingual content (RU/EN) with instant switching and a remembered preference',
+            'Dark/light theme with the choice remembered in the browser',
+            'Automatic SSH deployment to a self-managed server via GitHub Actions on every push',
+            'Deployed alongside another live production project on the same server, with zero downtime for it',
+          ],
           link: 'https://github.com/fouregg/belousov-portfolio',
           linkLabel: 'Code on GitHub',
         },

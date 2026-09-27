@@ -1,3 +1,4 @@
+import { Routes, Route, Outlet } from 'react-router-dom'
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { BackgroundAnimation } from './components/BackgroundAnimation'
@@ -12,6 +13,7 @@ import { Achievements } from './sections/Achievements'
 import { Testimonials } from './sections/Testimonials'
 import { Contact } from './sections/Contact'
 import { Footer } from './sections/Footer'
+import { ProjectPage } from './pages/ProjectPage'
 import { useEffect } from 'react'
 
 function DocumentMeta() {
@@ -31,25 +33,33 @@ function DocumentMeta() {
   return null
 }
 
-function Page() {
+function Layout() {
   return (
     <div className="min-h-screen text-text">
       <DocumentMeta />
       <BackgroundAnimation />
       <Header />
       <main>
-        <Hero />
-        <About />
-        <Services />
-        <Projects />
-        <Skills />
-        <Timeline />
-        <Achievements />
-        <Testimonials />
-        <Contact />
+        <Outlet />
       </main>
       <Footer />
     </div>
+  )
+}
+
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <About />
+      <Services />
+      <Projects />
+      <Skills />
+      <Timeline />
+      <Achievements />
+      <Testimonials />
+      <Contact />
+    </>
   )
 }
 
@@ -57,7 +67,12 @@ export default function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <Page />
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/projects/:slug" element={<ProjectPage />} />
+          </Route>
+        </Routes>
       </LanguageProvider>
     </ThemeProvider>
   )
