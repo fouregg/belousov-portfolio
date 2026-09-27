@@ -160,10 +160,6 @@ export const content: Record<Lang, Content> = {
             title: 'Разработка игр на Unity',
             description: 'Основы C# и Unity, этапы разработки игр, алгоритмы — от идеи до первого прототипа.',
           },
-          {
-            title: 'Курсовые и дипломные работы',
-            description: 'Помощь в постановке задач, определении научной новизны и структуры работы по ИТ-направлениям.',
-          },
         ],
         priceNote: 'Занятие 60 минут — от 2000 ₽. Индивидуально или в группе, очно и дистанционно.',
         priceLinkLabel: 'Полный прайс (36 услуг) на Профи.ру',
@@ -415,10 +411,6 @@ export const content: Record<Lang, Content> = {
           {
             title: 'Game development with Unity',
             description: 'C# and Unity fundamentals, the stages of game development, algorithms — from an idea to a first prototype.',
-          },
-          {
-            title: 'Coursework & thesis support',
-            description: 'Help framing the problem, defining the research novelty and structuring IT-related academic work.',
           },
         ],
         priceNote: 'A 60-minute lesson starts at 2000 RUB. One-on-one or group, in person or remote.',
