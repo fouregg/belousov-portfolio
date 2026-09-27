@@ -1,31 +1,32 @@
 import { useLanguage } from '../context/LanguageContext'
 import { Section } from '../components/Section'
 import { Reveal } from '../components/Reveal'
+import avatar from '../assets/avatar.jpg'
 
-function Monogram() {
+function Avatar() {
   return (
-    <svg width="112" height="112" viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="monogram-gradient" x1="0" y1="0" x2="112" y2="112" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="var(--accent)" />
-          <stop offset="100%" stopColor="var(--accent-2)" />
-        </linearGradient>
-      </defs>
-      <circle cx="56" cy="56" r="54" stroke="url(#monogram-gradient)" strokeWidth="2" strokeOpacity="0.35" />
-      <circle cx="56" cy="56" r="46" fill="url(#monogram-gradient)" fillOpacity="0.14" />
-      <text
-        x="56"
-        y="56"
-        textAnchor="middle"
-        dominantBaseline="central"
-        fontFamily="'JetBrains Mono', ui-monospace, monospace"
-        fontSize="34"
-        fontWeight="700"
-        fill="url(#monogram-gradient)"
+    <div className="relative h-28 w-28 shrink-0">
+      <svg
+        aria-hidden
+        width="112"
+        height="112"
+        viewBox="0 0 112 112"
+        className="absolute inset-0"
       >
-        АБ
-      </text>
-    </svg>
+        <defs>
+          <linearGradient id="avatar-ring-gradient" x1="0" y1="0" x2="112" y2="112" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="var(--accent)" />
+            <stop offset="100%" stopColor="var(--accent-2)" />
+          </linearGradient>
+        </defs>
+        <circle cx="56" cy="56" r="54" stroke="url(#avatar-ring-gradient)" strokeWidth="2" strokeOpacity="0.5" fill="none" />
+      </svg>
+      <img
+        src={avatar}
+        alt="Алексей Белоусов"
+        className="absolute inset-1 h-[104px] w-[104px] rounded-full border-2 border-surface object-cover"
+      />
+    </div>
   )
 }
 
@@ -36,7 +37,7 @@ export function About() {
     <Section id="about" title={t.about.title}>
       <div className="flex flex-col gap-8 sm:flex-row sm:items-start">
         <Reveal className="shrink-0">
-          <Monogram />
+          <Avatar />
         </Reveal>
         <div className="max-w-3xl space-y-5">
           {t.about.paragraphs.map((p, i) => (
