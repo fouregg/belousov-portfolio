@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -14,8 +14,10 @@
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
   --color-accent-teach: var(--accent-teach);
+  --color-on-teach: var(--on-teach);
   --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Lora', ui-serif, Georgia, serif;
 }
 
 :root {
@@ -30,6 +32,7 @@
   --accent: #5b5bf5;
   --accent-2: #14b8a6;
   --accent-teach: #d97706;
+  --on-teach: #ffffff;
 }
 
 .dark {
@@ -44,6 +47,7 @@
   --accent: #8484ff;
   --accent-2: #2dd4bf;
   --accent-teach: #fbbf24;
+  --on-teach: #1a1206;
 }
 
 html {
@@ -65,6 +69,22 @@ body {
   color: white;
 }
 
+/* Технический фон для сайта разработчика: тонкая сетка, гаснущая к краям. */
+.dev-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 30%, transparent 100%);
+}
+
+/* Тетрадная клетка для сайта преподавателя. */
+.teach-dots {
+  background-image: radial-gradient(color-mix(in srgb, var(--accent-teach) 35%, transparent) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 100%);
+}
+
 .bg-blob {
   position: absolute;
   border-radius: 9999px;
@@ -73,7 +93,23 @@ body {
   will-change: transform;
 }
 
-.dark .bg-blob {
+.dark /* Технический фон для сайта разработчика: тонкая сетка, гаснущая к краям. */
+.dev-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 30%, transparent 100%);
+}
+
+/* Тетрадная клетка для сайта преподавателя. */
+.teach-dots {
+  background-image: radial-gradient(color-mix(in srgb, var(--accent-teach) 35%, transparent) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 100%);
+}
+
+.bg-blob {
   opacity: 0.28;
 }
 
@@ -93,6 +129,15 @@ body {
   height: 38vw;
   background: var(--accent-2);
   animation: blob-float-2 32s ease-in-out infinite;
+}
+
+.bg-teach .bg-blob-1 {
+  background: var(--accent-teach);
+}
+
+.bg-teach .bg-blob-3 {
+  background: var(--accent);
+  opacity: 0.2;
 }
 
 .bg-blob-3 {
@@ -122,7 +167,23 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bg-blob {
+  /* Технический фон для сайта разработчика: тонкая сетка, гаснущая к краям. */
+.dev-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 30%, transparent 100%);
+}
+
+/* Тетрадная клетка для сайта преподавателя. */
+.teach-dots {
+  background-image: radial-gradient(color-mix(in srgb, var(--accent-teach) 35%, transparent) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 100%);
+}
+
+.bg-blob {
     animation: none !important;
   }
 }

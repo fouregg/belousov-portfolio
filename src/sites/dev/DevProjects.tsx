@@ -1,19 +1,19 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext'
-import { Section } from '../components/Section'
-import { Reveal } from '../components/Reveal'
-import { projectGradients, projectIconColors, projectIcons } from '../lib/projectVisuals'
-import type { Project } from '../content'
+import { useLanguage } from '../../context/LanguageContext'
+import { Section } from '../../components/Section'
+import { Reveal } from '../../components/Reveal'
+import { projectGradients, projectIconColors, projectIcons } from '../../lib/projectVisuals'
+import type { Project } from '../../content'
 
 function ProjectCard({ project, index, linkLabel }: { project: Project; index: number; linkLabel: string }) {
   const Icon = projectIcons[index % projectIcons.length]
 
   return (
     <Link
-      to={`/projects/${project.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-transform hover:-translate-y-1"
+      to={`/dev/projects/${project.slug}`}
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-all hover:-translate-y-1 hover:border-accent/60"
     >
       {project.images?.[0] ? (
         <div className="h-32 overflow-hidden">
@@ -36,7 +36,7 @@ function ProjectCard({ project, index, linkLabel }: { project: Project; index: n
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border px-2.5 py-0.5 text-xs font-medium text-text-muted"
+              className="rounded-md bg-surface-2 px-2 py-0.5 font-mono-brand text-xs text-text-muted"
             >
               {tag}
             </span>
@@ -52,7 +52,7 @@ function ProjectCard({ project, index, linkLabel }: { project: Project; index: n
   )
 }
 
-export function Projects() {
+export function DevProjects() {
   const { t } = useLanguage()
   const scrollerRef = useRef<HTMLDivElement>(null)
 
@@ -65,18 +65,18 @@ export function Projects() {
   }
 
   return (
-    <Section id="projects" title={t.projects.title} subtitle={t.projects.subtitle}>
+    <Section id="projects" title={t.dev.projects.title} subtitle={t.dev.projects.subtitle} eyebrow="04 cases">
       <div
         ref={scrollerRef}
         className="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {t.projects.items.map((project, i) => (
+        {t.dev.projects.items.map((project, i) => (
           <Reveal
             key={project.slug}
             delay={i * 0.08}
             className="w-[80%] shrink-0 snap-start sm:w-[55%] lg:w-[420px]"
           >
-            <ProjectCard project={project} index={i} linkLabel={t.projects.linkLabel} />
+            <ProjectCard project={project} index={i} linkLabel={t.dev.projects.linkLabel} />
           </Reveal>
         ))}
       </div>

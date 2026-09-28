@@ -1,23 +1,18 @@
-import { useEffect } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Check, ExternalLink } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext'
-import { Reveal } from '../components/Reveal'
-import { projectGradients, projectIconColors, projectIcons } from '../lib/projectVisuals'
+import { useLanguage } from '../../context/LanguageContext'
+import { Reveal } from '../../components/Reveal'
+import { projectGradients, projectIconColors, projectIcons } from '../../lib/projectVisuals'
 
 export function ProjectPage() {
   const { slug } = useParams()
   const { t } = useLanguage()
 
-  const index = t.projects.items.findIndex((p) => p.slug === slug)
-  const project = index >= 0 ? t.projects.items[index] : undefined
-
-  useEffect(() => {
-    window.scrollTo({ top: 0 })
-  }, [slug])
+  const index = t.dev.projects.items.findIndex((p) => p.slug === slug)
+  const project = index >= 0 ? t.dev.projects.items[index] : undefined
 
   if (!project) {
-    return <Navigate to="/" replace />
+    return <Navigate to="/dev" replace />
   }
 
   const Icon = projectIcons[index % projectIcons.length]
@@ -25,13 +20,13 @@ export function ProjectPage() {
   return (
     <article className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
       <Reveal>
-        <a
-          href="/#projects"
+        <Link
+          to="/dev#projects"
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-text-muted transition-colors hover:text-text"
         >
           <ArrowLeft size={16} />
-          {t.projects.backLabel}
-        </a>
+          {t.dev.projects.backLabel}
+        </Link>
       </Reveal>
 
       <Reveal delay={0.05}>
@@ -58,7 +53,7 @@ export function ProjectPage() {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border px-2.5 py-0.5 text-xs font-medium text-text-muted"
+              className="rounded-md bg-surface-2 px-2 py-0.5 font-mono-brand text-xs text-text-muted"
             >
               {tag}
             </span>
@@ -70,7 +65,7 @@ export function ProjectPage() {
             href={project.link}
             target="_blank"
             rel="noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
           >
             {project.linkLabel}
             <ExternalLink size={16} />
@@ -89,7 +84,7 @@ export function ProjectPage() {
       ) : null}
 
       <Reveal delay={0.15}>
-        <h2 className="mt-12 text-sm font-bold uppercase tracking-wide text-text-muted">{t.projects.detailsTitle}</h2>
+        <h2 className="mt-12 text-sm font-bold uppercase tracking-wide text-text-muted">{t.dev.projects.detailsTitle}</h2>
         <ul className="mt-4 space-y-3">
           {project.details.map((detail) => (
             <li key={detail} className="flex items-start gap-3">

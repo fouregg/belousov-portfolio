@@ -10,7 +10,14 @@
 - `whatsapp` — ссылку вида `https://wa.me/79991234567` (код страны + номер, без `+` и пробелов)
 - при необходимости `email`
 
-Весь остальной текст — в [src/content.ts](src/content.ts) (отдельно `ru` и `en`).
+Весь остальной текст — в [src/content.ts](src/content.ts) (отдельно `ru` и `en`; внутри — `landing`, `dev` и `teach`).
+
+## Структура
+
+- `/` — экран выбора направления ([src/pages/Landing.tsx](src/pages/Landing.tsx))
+- `/dev`, `/dev/projects/:slug` — сайт разработчика ([src/sites/dev/](src/sites/dev/))
+- `/teach` — сайт преподавателя ([src/sites/teach/](src/sites/teach/))
+- старые ссылки `/projects/:slug` перенаправляются на `/dev/projects/:slug`
 
 ## Запуск
 

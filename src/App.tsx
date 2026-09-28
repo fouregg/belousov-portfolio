@@ -1,94 +1,36 @@
-import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
-import { LanguageProvider, useLanguage } from './context/LanguageContext'
+import { Routes, Route, Navigate, useParams } from 'react-router-dom'
+import { LanguageProvider } from './context/LanguageContext'
 import { ThemeProvider } from './context/ThemeContext'
-import { BackgroundAnimation } from './components/BackgroundAnimation'
-import { Header } from './sections/Header'
-import { Hero } from './sections/Hero'
-import { About } from './sections/About'
-import { Services } from './sections/Services'
-import { Projects } from './sections/Projects'
-import { Skills } from './sections/Skills'
-import { Timeline } from './sections/Timeline'
-import { Achievements } from './sections/Achievements'
-import { Testimonials } from './sections/Testimonials'
-import { Contact } from './sections/Contact'
-import { Footer } from './sections/Footer'
-import { ProjectPage } from './pages/ProjectPage'
-import { useEffect } from 'react'
+import { ScrollManager } from './components/ScrollManager'
+import { Landing } from './pages/Landing'
+import { DevLayout } from './sites/dev/DevLayout'
+import { DevHome } from './sites/dev/DevHome'
+import { ProjectPage } from './sites/dev/ProjectPage'
+import { TeachLayout } from './sites/teach/TeachLayout'
+import { TeachHome } from './sites/teach/TeachHome'
 
-function DocumentMeta() {
-  const { t } = useLanguage()
-
-  useEffect(() => {
-    document.title = t.meta.title
-    let meta = document.querySelector('meta[name="description"]')
-    if (!meta) {
-      meta = document.createElement('meta')
-      meta.setAttribute('name', 'description')
-      document.head.appendChild(meta)
-    }
-    meta.setAttribute('content', t.meta.description)
-  }, [t])
-
-  return null
-}
-
-function Layout() {
-  return (
-    <div className="min-h-screen text-text">
-      <DocumentMeta />
-      <BackgroundAnimation />
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
-  )
-}
-
-function ScrollToHash() {
-  const location = useLocation()
-
-  useEffect(() => {
-    if (!location.hash) return
-    const id = location.hash.slice(1)
-    // The target section mounts on the same tick; give it a frame to paint.
-    const raf = requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView()
-    })
-    return () => cancelAnimationFrame(raf)
-  }, [location])
-
-  return null
-}
-
-function HomePage() {
-  return (
-    <>
-      <ScrollToHash />
-      <Hero />
-      <About />
-      <Services />
-      <Projects />
-      <Skills />
-      <Timeline />
-      <Achievements />
-      <Testimonials />
-      <Contact />
-    </>
-  )
+// Old links (/projects/:slug) predate the dev/teach split.
+function LegacyProjectRedirect() {
+  const { slug } = useParams()
+  return <Navigate to={`/dev/projects/${slug}`} replace />
 }
 
 export default function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
+        <ScrollManager />
         <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/projects/:slug" element={<ProjectPage />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/dev" element={<DevLayout />}>
+            <Route index element={<DevHome />} />
+            <Route path="projects/:slug" element={<ProjectPage />} />
           </Route>
+          <Route path="/teach" element={<TeachLayout />}>
+            <Route index element={<TeachHome />} />
+          </Route>
+          <Route path="/projects/:slug" element={<LegacyProjectRedirect />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </LanguageProvider>
     </ThemeProvider>
